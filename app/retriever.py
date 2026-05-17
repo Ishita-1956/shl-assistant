@@ -35,6 +35,12 @@ def _init():
     if _vectorstore_available is not None:
         return  # Already initialized
 
+    # Prevent OOM on Render free tier by falling back to keyword search
+    if os.environ.get("RENDER") or os.environ.get("DISABLE_VECTORSTORE") == "true":
+        logger.info("Running on Render or vectorstore disabled. Using keyword search fallback.")
+        _vectorstore_available = False
+        return
+
     try:
         from sentence_transformers import SentenceTransformer
         import chromadb

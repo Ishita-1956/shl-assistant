@@ -134,6 +134,5 @@ if __name__ == "__main__":
 
     print(f"\n{'=' * 50}")
     print("Setup complete! Start the server with:")
-    print("  cd app")
-    print("  python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000")
+    print("  python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000")
     print("=" * 50)
